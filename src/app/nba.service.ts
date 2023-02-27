@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable, of} from 'rxjs';
+import {BehaviorSubject, map, Observable, of} from 'rxjs';
 import { format, subDays } from 'date-fns';
 import {Division, Game, Stats, Team} from './data.models';
 
@@ -13,6 +13,7 @@ export class NbaService {
     'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'};
   private API_URL = "https://free-nba.p.rapidapi.com";
   trackedTeams: Team[] = [];
+  numberOfDays: BehaviorSubject<string> = new BehaviorSubject<string>("12")
 
   constructor(private http: HttpClient) { }
 

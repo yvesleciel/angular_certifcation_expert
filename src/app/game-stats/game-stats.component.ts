@@ -14,12 +14,17 @@ export class GameStatsComponent {
   teams$: Observable<Team[]>;
   allTeams: Team[] = [];
   division$: Observable<Division[]> = of();
+  defaultSelectDay = '';
+  daysChoice = ['6','12','20']
 
   constructor(protected nbaService: NbaService) {
     this.teams$ = nbaService.getAllTeams().pipe(
       tap(data => this.allTeams = data)
     );
     this.division$ = nbaService.getAllDivisions();
+    this.nbaService.numberOfDays.asObservable().subscribe(value => {
+      this.defaultSelectDay = value;
+    })
   }
 
   trackTeam(teamId: string): void {
@@ -49,5 +54,9 @@ export class GameStatsComponent {
         return  team.division.includes(event.split(' ')[0]);
       });
     }))
+  }
+
+  selectedNumberOfDays(value: string) {
+    this.nbaService.numberOfDays.next(value);
   }
 }

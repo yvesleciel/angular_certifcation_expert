@@ -21,7 +21,9 @@ export class TeamStatsComponent implements OnInit {
   constructor(protected nbaService: NbaService) { }
 
   ngOnInit(): void {
-    this.initGames()
+    this.nbaService.numberOfDays.asObservable().subscribe(value => {
+      this.initGames(Number(value));
+    })
   }
 
   deleteTeam(value: string) {
@@ -31,14 +33,12 @@ export class TeamStatsComponent implements OnInit {
     this.showPopup = false;
   }
 
-  initGames(numberOfDays = 12){
+  initGames(numberOfDays:number){
     this.numbersOfDays = numberOfDays;
     this.games$ = this.nbaService.getLastResults(this.team, numberOfDays).pipe(
       tap(games =>  this.stats = this.nbaService.getStatsFromGames(games, this.team))
     )
   }
 
-  selectedNumberOfDays(value: string) {
-    this.initGames(Number(value));
-  }
+
 }

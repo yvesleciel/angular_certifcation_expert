@@ -1,16 +1,3 @@
-<div style="margin: auto; width: 100px">
-  <select #numberOfDays (change)="selectedNumberOfDays(numberOfDays.value)">
-    <option value="6">
-      6
-    </option>
-    <option value="12" selected>
-      12
-    </option>
-    <option value="20">
-      20
-    </option>
-  </select>
-</div>
 <div class="card" *ngIf="games$ | async as games">
   <div>
     <h3>{{team.full_name}} [{{team.abbreviation}}] <span (click)="showPopup=true">&times;</span></h3>
