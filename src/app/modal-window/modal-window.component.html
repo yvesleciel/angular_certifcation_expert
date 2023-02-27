@@ -1,0 +1,15 @@
+<div class="modalW" *ngIf="isOpen">
+
+  <!-- Modal content -->
+  <div class="modalW-content">
+    <div class="modalW-body">
+      <ng-content select="body"></ng-content>
+      <div style="display: flex; flex-direction: row; margin: 4px">
+      <ng-content select="section"></ng-content>
+      </div>
+    </div>
+<!--    <div class="modalW-footer">-->
+<!--      <ng-content select="footer"></ng-content>-->
+<!--    </div>-->
+  </div>
+</div>
