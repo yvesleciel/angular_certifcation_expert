@@ -27,11 +27,8 @@ export class TeamStatsComponent implements OnInit {
   deleteTeam(value: string) {
     if(value === "Yes"){
       this.nbaService.removeTrackedTeam(this.team);
-      this.showPopup = false;
-    }else{
-      this.showPopup = false;
     }
-
+    this.showPopup = false;
   }
 
   initGames(numberOfDays = 12){
